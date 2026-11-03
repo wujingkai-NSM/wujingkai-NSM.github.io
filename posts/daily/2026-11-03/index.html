@@ -1,0 +1,47 @@
+<!doctype html><html lang=zh-CN><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>2026 11 03&nbsp;|&nbsp;武静慨</title><meta name=description content="为什么决定在这里写? 写着写着这个博客渐渐的变成了一些自述，因为好像没有什么技术可以值得分享的。
+想着能不能把每天做的东西在这里做一个陈述，然后利用AI工具帮我做出一些分析，能看出最近的思考轨迹，做出下一步的自我优化的点。
+最近做的财务系统的心得 最近做的财务的对账系统，感觉怎么说，平平无奇吧，就是一些sync的逻辑。
+这种逻辑可以分为三层
+同步数据，将数据从业务系统中同步到财务系统中来 数据模型，财务系统往往更加关心一个数据的组成部分，一个最终的金额并不是最终的期望 生成法则，一个账单的生成法则并不是很简单，需要考虑如果有退款单的时候需要删除，还是需要更新，还是需要仅生成，而不作用于任何账单 sequenceDiagram participant 业务数据 participant 财务系统 业务数据->>财务系统: 1. 同步数据 财务系统->>财务系统: 2. 自我同步 财务系统-->业务数据: 无任何操作即可 一些难点 写这个系统的过程中，有可能无意识的就可能把这个系统写成一个时间复杂度极高的一个系统
+写这个系统的过程中，就会写出下面这样的代码
+var billsFromDB = new HashMap<>(); for (Bill bill : bills) { if (biilsFromDB.contains(bill.getID())) { this.updateExistBills(bill); // 更新 } else { var billTerm = this.inferBillTerm(bill); if (this.isPeriodBillExists(billTerm)) { // 推断一批的账单 // 新增 // 计算 } } } 这种逻辑会特别的复杂，在写的过程中可能就需要不断的优化，这些时间复杂度。
+此外，关于这个系统，最后尝试做了一次跑批，大概是40万的数据量，非常不幸在一个2核4G的机器上跑崩了，CPU的利用率达到了95%。
+代码上的还需要有一些优化点 关于循环查库还有待优化的 "><meta name=author content="武静慨"><meta property="og:url" content="https://wujingkai-blog.org/posts/daily/2026-11-03/"><meta property="og:site_name" content="武静慨"><meta property="og:title" content="2026 11 03"><meta property="og:description" content="为什么决定在这里写? 写着写着这个博客渐渐的变成了一些自述，因为好像没有什么技术可以值得分享的。
+想着能不能把每天做的东西在这里做一个陈述，然后利用AI工具帮我做出一些分析，能看出最近的思考轨迹，做出下一步的自我优化的点。
+最近做的财务系统的心得 最近做的财务的对账系统，感觉怎么说，平平无奇吧，就是一些sync的逻辑。
+这种逻辑可以分为三层
+同步数据，将数据从业务系统中同步到财务系统中来 数据模型，财务系统往往更加关心一个数据的组成部分，一个最终的金额并不是最终的期望 生成法则，一个账单的生成法则并不是很简单，需要考虑如果有退款单的时候需要删除，还是需要更新，还是需要仅生成，而不作用于任何账单 sequenceDiagram participant 业务数据 participant 财务系统 业务数据->>财务系统: 1. 同步数据 财务系统->>财务系统: 2. 自我同步 财务系统-->业务数据: 无任何操作即可 一些难点 写这个系统的过程中，有可能无意识的就可能把这个系统写成一个时间复杂度极高的一个系统
+写这个系统的过程中，就会写出下面这样的代码
+var billsFromDB = new HashMap<>(); for (Bill bill : bills) { if (biilsFromDB.contains(bill.getID())) { this.updateExistBills(bill); // 更新 } else { var billTerm = this.inferBillTerm(bill); if (this.isPeriodBillExists(billTerm)) { // 推断一批的账单 // 新增 // 计算 } } } 这种逻辑会特别的复杂，在写的过程中可能就需要不断的优化，这些时间复杂度。
+此外，关于这个系统，最后尝试做了一次跑批，大概是40万的数据量，非常不幸在一个2核4G的机器上跑崩了，CPU的利用率达到了95%。
+代码上的还需要有一些优化点 关于循环查库还有待优化的"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-11-03T22:50:20+08:00"><meta property="article:modified_time" content="2026-11-03T22:50:20+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="2026 11 03"><meta name=twitter:description content="为什么决定在这里写? 写着写着这个博客渐渐的变成了一些自述，因为好像没有什么技术可以值得分享的。
+想着能不能把每天做的东西在这里做一个陈述，然后利用AI工具帮我做出一些分析，能看出最近的思考轨迹，做出下一步的自我优化的点。
+最近做的财务系统的心得 最近做的财务的对账系统，感觉怎么说，平平无奇吧，就是一些sync的逻辑。
+这种逻辑可以分为三层
+同步数据，将数据从业务系统中同步到财务系统中来 数据模型，财务系统往往更加关心一个数据的组成部分，一个最终的金额并不是最终的期望 生成法则，一个账单的生成法则并不是很简单，需要考虑如果有退款单的时候需要删除，还是需要更新，还是需要仅生成，而不作用于任何账单 sequenceDiagram participant 业务数据 participant 财务系统 业务数据->>财务系统: 1. 同步数据 财务系统->>财务系统: 2. 自我同步 财务系统-->业务数据: 无任何操作即可 一些难点 写这个系统的过程中，有可能无意识的就可能把这个系统写成一个时间复杂度极高的一个系统
+写这个系统的过程中，就会写出下面这样的代码
+var billsFromDB = new HashMap<>(); for (Bill bill : bills) { if (biilsFromDB.contains(bill.getID())) { this.updateExistBills(bill); // 更新 } else { var billTerm = this.inferBillTerm(bill); if (this.isPeriodBillExists(billTerm)) { // 推断一批的账单 // 新增 // 计算 } } } 这种逻辑会特别的复杂，在写的过程中可能就需要不断的优化，这些时间复杂度。
+此外，关于这个系统，最后尝试做了一次跑批，大概是40万的数据量，非常不幸在一个2核4G的机器上跑崩了，CPU的利用率达到了95%。
+代码上的还需要有一些优化点 关于循环查库还有待优化的"><link rel=canonical href=https://wujingkai-blog.org/posts/daily/2026-11-03/><link href=/bundle.min.44f4ab0ee57fd9d76e9b7718d49c508397f19a524db8067301a99fbc99c31f58.css rel=stylesheet></head><body><header><nav aria-label><a href=/>首页</a>
+<a href=/posts/>文章</a>
+<a href=/index.xml><svg class="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M0 64C0 46.3 14.3 32 32 32c229.8.0 416 186.2 416 416 0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96 14.3 96 0 81.7.0 64zM0 416a64 64 0 11128 0A64 64 0 110 416zM32 160c159.1.0 288 128.9 288 288 0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224-17.7.0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+RSS</a></nav><h1>2026 11 03</h1></header><main><p class=post-date><time datetime=2026-11-03>2026-11-03</time></p><h1 id=为什么决定在这里写>为什么决定在这里写?</h1><p>写着写着这个博客渐渐的变成了一些自述，因为好像没有什么技术可以值得分享的。</p><p>想着能不能把每天做的东西在这里做一个陈述，然后利用AI工具帮我做出一些分析，能看出最近的思考轨迹，做出下一步的自我优化的点。</p><h1 id=最近做的财务系统的心得>最近做的财务系统的心得</h1><p>最近做的财务的对账系统，感觉怎么说，平平无奇吧，就是一些<code>sync</code>的逻辑。</p><p>这种逻辑可以分为三层</p><ul><li><strong>同步数据</strong>，将数据从业务系统中同步到财务系统中来</li><li><strong>数据模型</strong>，财务系统往往更加关心一个数据的组成部分，一个最终的金额并不是最终的期望</li><li><strong>生成法则</strong>，一个账单的生成法则并不是很简单，需要考虑如果有退款单的时候需要删除，还是需要更新，还是需要仅生成，而不作用于任何账单</li></ul><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
+	participant 业务数据
+	participant 财务系统
+	业务数据-&gt;&gt;财务系统: 1. 同步数据
+	财务系统-&gt;&gt;财务系统: 2. 自我同步
+	财务系统--&gt;业务数据: 无任何操作即可
+</code></pre><h1 id=一些难点>一些难点</h1><p>写这个系统的过程中，有可能无意识的就可能把这个系统写成一个时间复杂度极高的一个系统</p><p>写这个系统的过程中，就会写出下面这样的代码</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>var</span> billsFromDB <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (Bill bill : bills) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> (biilsFromDB.<span style=color:#a6e22e>contains</span>(bill.<span style=color:#a6e22e>getID</span>())) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>updateExistBills</span>(bill); <span style=color:#75715e>// 更新</span>
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> billTerm <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>inferBillTerm</span>(bill);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>isPeriodBillExists</span>(billTerm)) { <span style=color:#75715e>// 推断一批的账单</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 新增</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 计算</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>这种逻辑会特别的复杂，在写的过程中可能就需要不断的优化，这些时间复杂度。</p><p>此外，关于这个系统，最后尝试做了一次跑批，大概是<strong>40万的数据量</strong>，非常不幸在一个2核4G的机器上跑崩了，CPU的利用率达到了<strong>95%</strong>。</p><ul><li>代码上的还需要有一些优化点</li><li>关于循环查库还有待优化的</li></ul><nav class="post-nav flex-between" aria-label><a href=/posts/interview/ rel=next><small><span aria-hidden=true>→</span></small>
+<span class=title>自省</span></a></nav></main><footer><span><a href=https://github.com/maolonglong/hugo-simple/>Hugo ʕ•ᴥ•ʔ Simple</a></span></footer></body></html>
